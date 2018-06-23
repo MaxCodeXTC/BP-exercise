@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import styles from './styles.scss';
 
-//ToDO import ListingItem from '../ListingItem';
+import ListingItem from '../ListingItem';
 
 class ListingsList extends Component {
   constructor(props) {
@@ -10,12 +9,19 @@ class ListingsList extends Component {
   }
 
   renderListings() {
-    const { loading } = this.props;
+    const { listings, loading } = this.props;
     if(loading) {
       return <h2>Loading...</h2>;
     }
     return (
-      <div>List Item Component Here</div>
+      listings.map((listing, index) => {
+        return(
+          <ListingItem
+            key={index}
+            listing={listing}
+          />
+        );
+      })
     );
   }
 
