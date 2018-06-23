@@ -3,6 +3,8 @@ import client from '../../services/client';
 import NewListingForm from '../NewListingForm';
 import styles from './styles.scss';
 
+import Header from '../common/Header';
+
 export default class App extends Component {
   constructor() {
     super();
@@ -44,9 +46,7 @@ export default class App extends Component {
 
     return(
       <div className={styles.container}>
-        <header>
-          <h1 className={styles.title}>Listings</h1>
-        </header>
+        <Header title="Listings" />
         <main>
           <NewListingForm
             className={styles.newListingForm}
