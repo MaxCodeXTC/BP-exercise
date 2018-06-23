@@ -46,11 +46,12 @@ class ListingsContainer extends Component {
             className={styles.newListingForm}
             onSubmit={(title, url) => this.handleSubmit(title, url)}
           />
-          <ListingsList
-            listings={this.state.listings}
-            loading={this.state.loading}
-          />
         </main>
+        <ListingsList
+          className={styles.listings}
+          listings={this.state.listings}
+          loading={this.state.loading}
+        />
       </div>
     );
   }
