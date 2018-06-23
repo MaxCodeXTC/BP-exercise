@@ -4,6 +4,7 @@ import styles from './styles.scss';
 
 import Header from '../common/Header';
 import NewListingForm from '../NewListingForm';
+import ListingsList from '../ListingsList';
 
 class ListingsContainer extends Component {
   constructor() {
@@ -45,7 +46,10 @@ class ListingsContainer extends Component {
             className={styles.newListingForm}
             onSubmit={(title, url) => this.handleSubmit(title, url)}
           />
-          <div>This is where the Listings List will Go</div>
+          <ListingsList
+            listings={this.state.listings}
+            loading={this.state.loading}
+          />
         </main>
       </div>
     );
