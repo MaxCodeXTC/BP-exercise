@@ -42,6 +42,17 @@
   &:hover::after {
     opacity: 1;
   }
+  &:hover .iconContainer {
+    opacity: 1;
+  }
+}
+
+.iconContainer {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  opacity: 0;
+  transition: opacity .3s;
 }
 
 @media (max-width: $breakpoint-mobile) {
