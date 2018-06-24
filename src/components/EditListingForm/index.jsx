@@ -5,13 +5,23 @@ import styles from './styles.scss';
 class EditListingForm extends Component {
   constructor(props) {
     super(props);
-    const { title, url, id } = this.props.listing;
+    
     this.state = {
-      title,
-      url,
-      id,
+      title: '',
+      url: '',
+      id: '',
       showError: false
     };
+  }
+
+  componentDidMount() {
+    const { title, url, id } = this.props.listing;
+    this.setState({ title, url, id });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { title, url, id } = nextProps.listing;
+    this.setState({ title, url, id });
   }
 
   handleSubmit(event) {
