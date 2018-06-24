@@ -1,24 +1,16 @@
 @import '../../styles/base.scss';
+@import '../../styles/form.scss';
 
 .newListing {
-  margin-bottom: 1rem;
-  width: 100%;
-
+  @include listingForm;
+  
   fieldset {
-    border: 0;
-    display: inline-block;
-    margin: 0;
-    margin-right: 3%;
-    padding: 0;
+    @include fieldSet;
     width: 80%;
   }
 
   input {
-    border: 1px solid $color-border;
-    font-size: 1rem;
-    font-weight: $font-weight-light;
-    margin: 0;
-    padding: $text-padding;
+    @include input;
 
     &:first-child {
       border-top-left-radius: $border-radius;
@@ -32,36 +24,15 @@
       border-bottom-right-radius: $border-radius;
       width: 70%;
     }
-
-    :placeholder {
-      color: $color-body;
-    }
-
-    &:focus {
-      outline: none;
-    }
   }
 }
 
+.button {
+  @include button;
+}
+
 .create {
-  background-color: $color-contrast;
-  border: 0;
-  border-radius: $border-radius;
-  color: #FFF;
-  display: inline-block;
-  font-size: 1rem;
-  font-weight: $font-weight-light;
-  padding: $text-padding 0 $text-padding 0;
-  text-transform: uppercase;
-  width: 17%;
-
-  &:focus {
-    outline: none;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
+  @include create;
 }
 
 @media (max-width: $breakpoint-mobile) {

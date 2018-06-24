@@ -8,7 +8,7 @@ const ListingsList = (props) => {
 
   // render loading / no listings / current listings
   const renderListings = ()  => {
-    const { listings, loading, onDeletePress } = props;
+    const { listings, loading, onDeletePress, handleEditSubmit } = props;
 
     if(loading) {
       return <h2>Loading...</h2>;
@@ -25,6 +25,7 @@ const ListingsList = (props) => {
             key={index}
             listing={listing}
             onDeletePress={onDeletePress}
+            handleEditSubmit={handleEditSubmit}
           />
         );
       })
@@ -44,6 +45,7 @@ ListingsList.propTypes = {
   className: PropTypes.string,
   renderListings: PropTypes.func,
   onDeletePress: PropTypes.func,
+  handleEditSubmit: PropTypes.func,
 };
 
 export default ListingsList;
