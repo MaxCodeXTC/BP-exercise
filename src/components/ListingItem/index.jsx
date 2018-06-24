@@ -10,21 +10,33 @@ import EditListingForm from '../EditListingForm';
 class ListingItem extends Component {
   constructor(props) {
     super(props);
-    const { title, url, id } = props.listing;
     this.state = {
-      title,
-      url,
-      id,
+      title: '',
+      url: '',
+      id: '',
       showServerError: false,
       showModal: false,
     };
     
   }
 
+  componentDidMount() {
+    console.log(this.props, '---- Listing Item Mounted -----');
+    const { title, url, id } = this.props.listing;
+    this.setState({ title, url, id });
+  }
+
+  // rerender components one the parent containers state changes
+  componentWillReceiveProps(nextProps) {
+    const { title, url, id } = nextProps.listing;
+    this.setState({ title, url, id });  
+  }
+
   showEditModal() {
     return this.setState({ showModal: !this.state.showModal });
   }
 
+  // handles submit of the edit form inside the modal
   handleEditSubmit(title, url, id) {
     return client.editListing(title, url, id).then((response) => {
 
@@ -38,6 +50,7 @@ class ListingItem extends Component {
 
   render() {
     const { title, url, id } = this.state;
+    
     return (
       <article className={styles.listingItem}>
         <div className={styles.iconContainer}>
@@ -50,7 +63,7 @@ class ListingItem extends Component {
         showModal={this.state.showModal}
         modalClose={this.showEditModal.bind(this)}>
         <EditListingForm 
-          listing={this.props.listing}
+          listing={this.state}
           handleEditSubmit={this.handleEditSubmit.bind(this)}
           modalClose={this.showEditModal.bind(this)}
         />
@@ -64,6 +77,7 @@ ListingItem.propTypes = {
   listing: PropTypes.object,
   title: PropTypes.string,
   url: PropTypes.string,
+  id: PropTypes.string,
   onDeletePress: PropTypes.func,
 };
 

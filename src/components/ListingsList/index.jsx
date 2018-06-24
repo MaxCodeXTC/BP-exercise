@@ -6,8 +6,10 @@ import ListingItem from '../ListingItem';
 
 const ListingsList = (props) => {
 
+  // render loading / no listings / current listings
   const renderListings = ()  => {
-    const { listings, loading, onDeletePress, showEditModal } = props;
+    const { listings, loading, onDeletePress } = props;
+
     if(loading) {
       return <h2>Loading...</h2>;
     } 
@@ -23,7 +25,6 @@ const ListingsList = (props) => {
             key={index}
             listing={listing}
             onDeletePress={onDeletePress}
-            showEditModal={showEditModal}
           />
         );
       })
@@ -43,7 +44,6 @@ ListingsList.propTypes = {
   className: PropTypes.string,
   renderListings: PropTypes.func,
   onDeletePress: PropTypes.func,
-  showEditModal: PropTypes.func,
 };
 
 export default ListingsList;
