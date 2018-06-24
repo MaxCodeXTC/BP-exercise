@@ -12,6 +12,7 @@ class ListingItem extends Component {
   render() {
     const { title, url } = this.props.listing;
     return (
+      <div>
       <article className={styles.listingItem}>
         <div className={styles.iconContainer}>
           <span onClick={() => this.props.showEditModal()}><Icon iconClass="fas fa-pen" /></span>
@@ -20,6 +21,7 @@ class ListingItem extends Component {
         <h2>{title}</h2> 
         <h3>{url}</h3>
       </article>
+      </div>
     );
   }
 }
@@ -29,7 +31,7 @@ ListingItem.propTypes = {
   title: PropTypes.string,
   url: PropTypes.string,
   onDeletePress: PropTypes.func,
-  showEditModal: PropTypes.func
+  showEditModal: PropTypes.func,
 };
 
 export default ListingItem;

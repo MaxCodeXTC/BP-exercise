@@ -34,6 +34,20 @@ export default {
     });
   },
 
+  editListing(title, url, id) {
+    const body = {
+      data: {
+        attribues: {
+          title: title,
+          url: url
+        }
+      }
+    };
+    return API.put(`/listings/${id}`, body).then(response => {
+      return serializer(response.data);
+    });
+  },
+
   deleteListing(listing) {
     return API.delete(`/listings/${listing.id}`).then(response => {
       return response;

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import client from '../../services/client';
 import styles from './styles.scss';
-
 import Header from '../common/Header';
 import NewListingForm from '../NewListingForm';
 import ListingsList from '../ListingsList';
