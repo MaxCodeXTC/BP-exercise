@@ -25,11 +25,11 @@
 
 // X on the top right that closes the modal
 .modalClose {
-  border: 2px solid #000;
-  border-radius: 25px;
-  font-size: $font-size-small;
+  font-size: 2em;
+  font-weight: 600;
+  color: $color-cancel;
   position: absolute;
   top: 0;
-  right: 0;
+  right: 5px;
 }
 

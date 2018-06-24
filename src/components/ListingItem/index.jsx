@@ -20,12 +20,12 @@ class ListingItem extends Component {
   }
 
   render() {
-    const { title, url } = this.props.listing;
+    const { title, url, id } = this.props.listing;
     return (
       <article className={styles.listingItem}>
         <div className={styles.iconContainer}>
           <span onClick={() => this.showEditModal()}><Icon iconClass="fas fa-pen" /></span>
-          <span onClick={() => this.props.onDeletePress(this.props.listing)}><Icon iconClass="fa fa-trash" /></span>
+          <span onClick={() => this.props.onDeletePress(id)}><Icon iconClass="fa fa-trash" /></span>
         </div>
         <h2>{title}</h2> 
         <h3>{url}</h3>

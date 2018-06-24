@@ -46,15 +46,22 @@ class ListingsContainer extends Component {
     });
   }
 
-  onDeletePress(listing) {
+  onDeletePress(id) {
+
+    // filters through listings and returns all listings except for one that we will delete
+    let remainder = this.state.listings.filter((listing) => {
+      if(listing.id !== id) return listing;
+    });
+
+    // start loading spinner and make API call for lisiting deletion
     this.setState({ loading: true });
-    return client.deleteListing(listing).then(() => {
-      return client.getListings().then(listings => {
-        return this.setState({ listings: listings, loading: false, showServerError: false });
+       client.deleteListing(id).then(() => {
       }).catch(() => {
         return this.setState({ showServerError: true });
       });
-    });
+    
+    // sets the state with the new listings to rerender the component
+    return this.setState({ listings: remainder, loading: false});
   }
 
 

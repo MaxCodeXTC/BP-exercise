@@ -11,9 +11,7 @@ const Modal = (props) => {
     return (
       <div className={styles.modalBackDrop}>
         <div className={styles.modal}>
-        <button onClick={() => props.showEditModal()} className={styles.modalClose}>
-              x
-        </button>
+          <a type="button" onClick={() => props.modalClose() }><i className={`${styles.modalClose} fas fa-times`}></i></a>
           {props.children}
         </div>
       </div>
@@ -24,6 +22,7 @@ Modal.propTypes = {
   onClose: PropTypes.func,
   showModal: PropTypes.bool,
   showEditModal: PropTypes.func,
+  modalClose: PropTypes.func,
   children: PropTypes.node,
 };
 

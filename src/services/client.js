@@ -48,8 +48,8 @@ export default {
     });
   },
 
-  deleteListing(listing) {
-    return API.delete(`/listings/${listing.id}`).then((response) => {
+  deleteListing(id) {
+    return API.delete(`/listings/${id}`).then((response) => {
       return response;
     });
   },
