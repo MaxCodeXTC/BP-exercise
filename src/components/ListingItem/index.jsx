@@ -14,7 +14,7 @@ class ListingItem extends Component {
     return (
       <article className={styles.listingItem}>
         <div className={styles.iconContainer}>
-          <Icon iconClass="fas fa-pen" />
+          <span onClick={() => this.props.showEditModal()}><Icon iconClass="fas fa-pen" /></span>
           <span onClick={() => this.props.onDeletePress(this.props.listing)}><Icon iconClass="fa fa-trash" /></span>
         </div>
         <h2>{title}</h2> 
@@ -28,7 +28,8 @@ ListingItem.propTypes = {
   listing: PropTypes.object,
   title: PropTypes.string,
   url: PropTypes.string,
-  onDeletePress: PropTypes.func
+  onDeletePress: PropTypes.func,
+  showEditModal: PropTypes.func
 };
 
 export default ListingItem;

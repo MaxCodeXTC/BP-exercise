@@ -9,7 +9,7 @@ class ListingsList extends Component {
   }
 
   renderListings() {
-    const { listings, loading, onDeletePress } = this.props;
+    const { listings, loading, onDeletePress, showEditModal } = this.props;
     if(loading) {
       return <h2>Loading...</h2>;
     } 
@@ -25,6 +25,7 @@ class ListingsList extends Component {
             key={index}
             listing={listing}
             onDeletePress={onDeletePress}
+            showEditModal={showEditModal}
           />
         );
       })
@@ -46,6 +47,7 @@ ListingsList.propTypes = {
   className: PropTypes.string,
   renderListings: PropTypes.func,
   onDeletePress: PropTypes.func,
+  showEditModal: PropTypes.func,
 };
 
 export default ListingsList;
