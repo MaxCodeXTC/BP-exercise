@@ -23,6 +23,7 @@ class ListingsContainer extends Component {
     });
   }
 
+  // new listing submission handling
   handleSubmit(title, url) {
     let listings = this.state.listings.slice();
 
@@ -50,9 +51,31 @@ class ListingsContainer extends Component {
     });
   }
 
+  // handles submit of the edit form inside the modal
+  handleEditSubmit(title, url, id) {
+    return client.editListing(title, url, id).then((response) => {
+
+      // filter through the listings to find the one that matches the changed listing
+      const { title, url, id } = response;
+      let listings = [...this.state.listings];
+      let targetListing = listings.find((listing) => {
+				return listing.id === id;
+      });
+
+      // change the found listing 
+      targetListing.title = title;
+      targetListing.url = url;
+
+      // set state to rerender component after edit
+      this.setState({ listings });
+      }).catch(() => {
+        return this.setState({ showServerError: true });
+      });
+  }
+
 
   render() {
-    console.log(this.state.listings);
+    
     return(
       <div className={styles.container}>
       <Header title="Listings" />
@@ -67,6 +90,7 @@ class ListingsContainer extends Component {
           listings={this.state.listings}
           loading={this.state.loading}
           onDeletePress={this.onDeletePress.bind(this)}
+          handleEditSubmit={this.handleEditSubmit.bind(this)}
         />
       </div>
     );

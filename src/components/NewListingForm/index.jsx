@@ -8,10 +8,12 @@ class NewListingForm extends Component {
     this.state = {
       title: '',
       url: '',
-      showError: false
+      showError: false,
+      error: ''
     };
   }
 
+  // creates a new listing
   handleSubmit(event) {
     event.preventDefault();
     const title = this.state.title;
@@ -19,8 +21,9 @@ class NewListingForm extends Component {
 
     return this.props.onSubmit(title, url).then(() => {
       return this.setState({ title: '', url: '', showError: false });
-    }).catch(() => {
-      return this.setState({ showError: true });
+    }).catch((error) => {
+      console.log(error);
+      return this.setState({ showError: true, error });
     });
   }
 
@@ -58,7 +61,7 @@ class NewListingForm extends Component {
               aria-required="true"
             />
           </fieldset>
-          <button className={styles.create}>Enter</button>
+          <button className={`${styles.create} ${styles.button}`}>Enter</button>
         </form>
       </div>
     );

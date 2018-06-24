@@ -1,75 +1,43 @@
 @import '../../styles/base.scss';
-
+@import '../../styles/form.scss';
 
 .newListing {
-  margin-bottom: 1rem;
-  width: 100%;
+  @include listingForm;
 
   fieldset {
-    border: 0;
-    display: inline-block;
-    margin: 0;
-    margin-right: 3%;
-    padding: 0;
+    @include fieldSet;
     width: 100%;
   }
 
   input {
-    border: 1px solid $color-border;
-    font-size: 1rem;
-    font-weight: $font-weight-light;
+    @include input;
     width: 100%;
-    margin: 1em 0;
-    padding: $text-padding;
-
-    &:placeholder {
-      color: $color-body;
     }
-
-    &:focus {
-      outline: none;
-    }
-  }
 }
 
 .buttonsContainer {
   text-align: right;
 
-  & button:first-child {
+  button:first-child {
     padding: $text-padding;
     margin: 0 1em;
   }
 
-  & button:last-child {
+  button:last-child {
     padding: $text-padding 0 $text-padding 0;
   }
 }
 
 .button {
-  border: 0;
-  border-radius: $border-radius;
-  color: #FFF;
-  display: inline-block;
-  font-size: 1rem;
-  font-weight: $font-weight-light;
-  text-transform: uppercase;
-
-  &:focus {
-    outline: none;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
+  @include button;
 }
 
 .create {
-  background-color: $color-contrast;
-  width: 17%;
+  @include create;
 }
 
 .cancel {
-  background-color: $color-cancel;
+  @include cancel;
 }
 
 @media (max-width: $breakpoint-mobile) {
@@ -84,5 +52,9 @@
   .create, 
   .cancel {
     width: 100%;
+  }
+
+  .buttonsContainer button.button.cancel {
+    margin: 1em 0;
   }
 }

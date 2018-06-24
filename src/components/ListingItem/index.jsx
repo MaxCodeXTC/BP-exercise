@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import client from '../../services/client';
 import styles from './styles.scss';
 
 import Icon from '../common/Icon';
@@ -21,7 +20,6 @@ class ListingItem extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props, '---- Listing Item Mounted -----');
     const { title, url, id } = this.props.listing;
     this.setState({ title, url, id });
   }
@@ -36,17 +34,6 @@ class ListingItem extends Component {
     return this.setState({ showModal: !this.state.showModal });
   }
 
-  // handles submit of the edit form inside the modal
-  handleEditSubmit(title, url, id) {
-    return client.editListing(title, url, id).then((response) => {
-
-      const { title, url } = response;
-      this.setState({ title, url });
-      
-      }).catch(() => {
-        return this.setState({ showServerError: true });
-      });
-  }
 
   render() {
     const { title, url, id } = this.state;
@@ -64,7 +51,7 @@ class ListingItem extends Component {
         modalClose={this.showEditModal.bind(this)}>
         <EditListingForm 
           listing={this.state}
-          handleEditSubmit={this.handleEditSubmit.bind(this)}
+          handleEditSubmit={this.props.handleEditSubmit}
           modalClose={this.showEditModal.bind(this)}
         />
       </Modal>
@@ -79,6 +66,7 @@ ListingItem.propTypes = {
   url: PropTypes.string,
   id: PropTypes.string,
   onDeletePress: PropTypes.func,
+  handleEditSubmit: PropTypes.func,
 };
 
 export default ListingItem;
