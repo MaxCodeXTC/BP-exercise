@@ -4,7 +4,7 @@ import styles from './styles.scss';
 
 const Icon = (props) => {
   return (
-    <i className={`${props.iconClass} ${styles.i}`}></i>
+    <i className={`${props.iconClass} ${styles.icon}`}></i>
   );
 };
 

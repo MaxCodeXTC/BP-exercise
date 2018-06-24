@@ -59,7 +59,10 @@ class EditListingForm extends Component {
               aria-required="true"
             />
           </fieldset>
-          <button className={styles.create}>Enter</button>
+          <div className={styles.buttonsContainer}>
+            <button className={`${styles.cancel} ${styles.button}`} onClick={() => this.props.modalClose()}>Cancel</button>
+            <button className={`${styles.create} ${styles.button}`}>Update</button>
+          </div>
         </form>
       </div>
     );
@@ -72,7 +75,9 @@ EditListingForm.propTypes = {
   title: PropTypes.string,
   url: PropTypes.string,
   id: PropTypes.string,
-  handleEditSubmit: PropTypes.func
+  handleEditSubmit: PropTypes.func,
+  modalClose: PropTypes.func,
+
 };
 
 export default EditListingForm;

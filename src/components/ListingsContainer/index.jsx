@@ -12,7 +12,6 @@ class ListingsContainer extends Component {
       listings: [],
       loading: true,
       showServerError: false,
-      showModal: false,
     };
   }
 
@@ -58,9 +57,6 @@ class ListingsContainer extends Component {
     });
   }
 
-  showEditModal() {
-    return this.setState({ showModal: !this.state.showModal });
-  }
 
   render() {
     return(
@@ -77,7 +73,6 @@ class ListingsContainer extends Component {
           listings={this.state.listings}
           loading={this.state.loading}
           onDeletePress={this.onDeletePress.bind(this)}
-          showEditModal={this.showEditModal.bind(this)}
           handleEditSubmit={this.handleEditSubmit.bind(this)}
         />
       </div>

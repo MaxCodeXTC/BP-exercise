@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './styles.scss';
 
 import ListingItem from '../ListingItem';
 
@@ -31,9 +32,9 @@ const ListingsList = (props) => {
   };
 
   return (
-    <div>
+    <section className={styles.listingsContainer}>
       {renderListings()}
-    </div>
+    </section>
   );
 };
 
