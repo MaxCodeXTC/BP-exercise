@@ -7,7 +7,7 @@ import ListingItem from '../ListingItem';
 const ListingsList = (props) => {
 
   const renderListings = ()  => {
-    const { listings, loading, onDeletePress, showEditModal, handleEditSubmit } = props;
+    const { listings, loading, onDeletePress, showEditModal } = props;
     if(loading) {
       return <h2>Loading...</h2>;
     } 
@@ -24,7 +24,6 @@ const ListingsList = (props) => {
             listing={listing}
             onDeletePress={onDeletePress}
             showEditModal={showEditModal}
-            handleEditSubmit={handleEditSubmit}
           />
         );
       })
@@ -45,7 +44,6 @@ ListingsList.propTypes = {
   renderListings: PropTypes.func,
   onDeletePress: PropTypes.func,
   showEditModal: PropTypes.func,
-  handleEditSubmit: PropTypes.func,
 };
 
 export default ListingsList;

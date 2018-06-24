@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
 const Modal = (props) => {
-  console.log(props);
     if(!props.showModal) {
       return null;
     }

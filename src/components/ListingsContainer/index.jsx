@@ -36,16 +36,6 @@ class ListingsContainer extends Component {
     });
   }
 
-  handleEditSubmit(title, url, id) {
-    return client.editListing(title, url, id).then(() => {
-      return client.getListings().then(listings => {
-        return this.setState({ listings: listings, loading: false, showServerError: false });
-      }).catch(() => {
-        return this.setState({ showServerError: true });
-      });
-    });
-  }
-
   onDeletePress(id) {
 
     // filters through listings and returns all listings except for one that we will delete
@@ -64,7 +54,6 @@ class ListingsContainer extends Component {
     return this.setState({ listings: remainder, loading: false});
   }
 
-
   render() {
     return(
       <div className={styles.container}>
@@ -80,7 +69,6 @@ class ListingsContainer extends Component {
           listings={this.state.listings}
           loading={this.state.loading}
           onDeletePress={this.onDeletePress.bind(this)}
-          handleEditSubmit={this.handleEditSubmit.bind(this)}
         />
       </div>
     );

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import client from '../../services/client';
 import styles from './styles.scss';
 
 import Icon from '../common/Icon';
@@ -9,7 +10,12 @@ import EditListingForm from '../EditListingForm';
 class ListingItem extends Component {
   constructor(props) {
     super(props);
+    const { title, url, id } = props.listing;
     this.state = {
+      title,
+      url,
+      id,
+      showServerError: false,
       showModal: false,
     };
     
@@ -19,8 +25,19 @@ class ListingItem extends Component {
     return this.setState({ showModal: !this.state.showModal });
   }
 
+  handleEditSubmit(title, url, id) {
+    return client.editListing(title, url, id).then((response) => {
+
+      const { title, url } = response;
+      this.setState({ title, url });
+      
+      }).catch(() => {
+        return this.setState({ showServerError: true });
+      });
+  }
+
   render() {
-    const { title, url, id } = this.props.listing;
+    const { title, url, id } = this.state;
     return (
       <article className={styles.listingItem}>
         <div className={styles.iconContainer}>
@@ -34,7 +51,7 @@ class ListingItem extends Component {
         modalClose={this.showEditModal.bind(this)}>
         <EditListingForm 
           listing={this.props.listing}
-          handleEditSubmit={this.props.handleEditSubmit}
+          handleEditSubmit={this.handleEditSubmit.bind(this)}
           modalClose={this.showEditModal.bind(this)}
         />
       </Modal>
@@ -48,7 +65,6 @@ ListingItem.propTypes = {
   title: PropTypes.string,
   url: PropTypes.string,
   onDeletePress: PropTypes.func,
-  handleEditSubmit: PropTypes.func,
 };
 
 export default ListingItem;
