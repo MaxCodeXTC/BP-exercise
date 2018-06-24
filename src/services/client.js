@@ -43,7 +43,6 @@ export default {
       }
     };
     return API.put(`/listings/${id}`, body).then(response => {
-      console.log(response);
       return serializer(response.data);
     });
   },

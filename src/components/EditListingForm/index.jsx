@@ -18,11 +18,12 @@ class EditListingForm extends Component {
     event.preventDefault();
     const { title, url, id } = this.state;
 
-    return this.props.handleEditSubmit(title, url, id).then(() => {
-      return this.setState({ title: '', url: '', showError: false });
+    this.props.handleEditSubmit(title, url, id).then(() => {
     }).catch(() => {
       return this.setState({ showError: true });
     });
+    
+    this.props.modalClose();
   }
 
   handleInputChange(event) {
