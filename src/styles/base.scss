@@ -8,6 +8,7 @@ $color-hover-border: #CCC;
 $color-contrast: #4E92DF;
 $color-overlay: rgba(0,0,0,0.5);
 $color-danger: #b71c1c;
+$color-cancel: #6c757d;
 $color-card-background: #fff;
 
 $ff-base: #{'Open Sans', sans-serif};
@@ -31,6 +32,8 @@ $z-beta: 100;
 $z-charlie: 1000;
 
 $breakpoint-mobile: 450px;
+
+$text-padding: 0.75rem;
 
 html {
   background-color: #F4F4F4;

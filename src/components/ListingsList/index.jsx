@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './styles.scss';
 
 import ListingItem from '../ListingItem';
 
-class ListingsList extends Component {
-  constructor(props) {
-    super(props);
-  }
+const ListingsList = (props) => {
 
-  renderListings() {
-    const { listings, loading, onDeletePress } = this.props;
+  const renderListings = ()  => {
+    const { listings, loading, onDeletePress, showEditModal, handleEditSubmit } = props;
     if(loading) {
       return <h2>Loading...</h2>;
     } 
@@ -25,20 +23,20 @@ class ListingsList extends Component {
             key={index}
             listing={listing}
             onDeletePress={onDeletePress}
+            showEditModal={showEditModal}
+            handleEditSubmit={handleEditSubmit}
           />
         );
       })
     );
-  }
+  };
 
-  render() {
-    return (
-      <div>
-        {this.renderListings()}
-      </div>
-    );
-  }
-}
+  return (
+    <section className={styles.listingsContainer}>
+      {renderListings()}
+    </section>
+  );
+};
 
 ListingsList.propTypes = {
   listings: PropTypes.array,
@@ -46,6 +44,8 @@ ListingsList.propTypes = {
   className: PropTypes.string,
   renderListings: PropTypes.func,
   onDeletePress: PropTypes.func,
+  showEditModal: PropTypes.func,
+  handleEditSubmit: PropTypes.func,
 };
 
 export default ListingsList;

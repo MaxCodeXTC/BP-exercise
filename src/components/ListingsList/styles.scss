@@ -1,0 +1,6 @@
+// sets the margin of all the listings on the left side
+.listingsContainer {
+  article:nth-child(odd) {
+    margin-right: 4%
+  }
+}

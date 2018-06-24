@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import client from '../../services/client';
 import styles from './styles.scss';
-
 import Header from '../common/Header';
 import NewListingForm from '../NewListingForm';
 import ListingsList from '../ListingsList';
@@ -12,7 +11,7 @@ class ListingsContainer extends Component {
     this.state = {
       listings: [],
       loading: true,
-      showServerError: false
+      showServerError: false,
     };
   }
 
@@ -37,9 +36,8 @@ class ListingsContainer extends Component {
     });
   }
 
-  onDeletePress(listing) {
-    this.setState({ loading: true });
-    return client.deleteListing(listing).then(() => {
+  handleEditSubmit(title, url, id) {
+    return client.editListing(title, url, id).then(() => {
       return client.getListings().then(listings => {
         return this.setState({ listings: listings, loading: false, showServerError: false });
       }).catch(() => {
@@ -47,6 +45,25 @@ class ListingsContainer extends Component {
       });
     });
   }
+
+  onDeletePress(id) {
+
+    // filters through listings and returns all listings except for one that we will delete
+    let remainder = this.state.listings.filter((listing) => {
+      if(listing.id !== id) return listing;
+    });
+
+    // start loading spinner and make API call for lisiting deletion
+    this.setState({ loading: true });
+       client.deleteListing(id).then(() => {
+      }).catch(() => {
+        return this.setState({ showServerError: true });
+      });
+    
+    // sets the state with the new listings to rerender the component
+    return this.setState({ listings: remainder, loading: false});
+  }
+
 
   render() {
     return(
@@ -63,6 +80,7 @@ class ListingsContainer extends Component {
           listings={this.state.listings}
           loading={this.state.loading}
           onDeletePress={this.onDeletePress.bind(this)}
+          handleEditSubmit={this.handleEditSubmit.bind(this)}
         />
       </div>
     );
