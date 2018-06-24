@@ -37,6 +37,16 @@ class ListingsContainer extends Component {
     });
   }
 
+  handleEditSubmit(title, url, id) {
+    return client.editListing(title, url, id).then(() => {
+      return client.getListings().then(listings => {
+        return this.setState({ listings: listings, loading: false, showServerError: false });
+      }).catch(() => {
+        return this.setState({ showServerError: true });
+      });
+    });
+  }
+
   onDeletePress(listing) {
     this.setState({ loading: true });
     return client.deleteListing(listing).then(() => {
@@ -68,6 +78,7 @@ class ListingsContainer extends Component {
           loading={this.state.loading}
           onDeletePress={this.onDeletePress.bind(this)}
           showEditModal={this.showEditModal.bind(this)}
+          handleEditSubmit={this.handleEditSubmit.bind(this)}
         />
       </div>
     );
