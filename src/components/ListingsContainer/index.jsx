@@ -37,6 +37,17 @@ class ListingsContainer extends Component {
     });
   }
 
+  onDeletePress(listing) {
+    this.setState({ loading: true });
+    return client.deleteListing(listing).then(() => {
+      return client.getListings().then(listings => {
+        return this.setState({ listings: listings, loading: false, showServerError: false });
+      }).catch(() => {
+        return this.setState({ showServerError: true });
+      });
+    });
+  }
+
   render() {
     return(
       <div className={styles.container}>
@@ -51,6 +62,7 @@ class ListingsContainer extends Component {
           className={styles.listings}
           listings={this.state.listings}
           loading={this.state.loading}
+          onDeletePress={this.onDeletePress.bind(this)}
         />
       </div>
     );

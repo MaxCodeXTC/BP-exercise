@@ -14,6 +14,7 @@ const API = axios.create({
 export default {
   getListings() {
     return API.get('/listings').then(response => {
+      console.log(response);
       return serializer(response.data);
     });
   },
@@ -32,4 +33,11 @@ export default {
       return serializer(response.data);
     });
   },
+
+  deleteListing(listing) {
+    return API.delete(`/listings/${listing.id}`).then(response => {
+      return response;
+    });
+  },
+
 };
