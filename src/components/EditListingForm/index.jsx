@@ -10,7 +10,6 @@ class EditListingForm extends Component {
       title: '',
       url: '',
       id: '',
-      showError: false
     };
   }
 
@@ -29,11 +28,11 @@ class EditListingForm extends Component {
     const { title, url, id } = this.state;
 
     this.props.handleEditSubmit(title, url, id).then(() => {
-    }).catch(() => {
-      return this.setState({ showError: true });
+      if(!this.props.showError) {
+        this.props.modalClose();
+      }
     });
     
-    this.props.modalClose();
   }
 
   handleInputChange(event) {
@@ -42,8 +41,18 @@ class EditListingForm extends Component {
     const name = target.name;
 
     this.setState({
-      [name]: value
+      [name]: value,
     });
+  }
+
+  renderError() {
+    if(!this.props.showError) {
+      return null;
+    }
+
+    return (
+      <p className={styles.error}>All fields must be filled to update this listing*</p>
+    );
   }
 
   render() {
@@ -70,6 +79,7 @@ class EditListingForm extends Component {
               aria-required="true"
             />
           </fieldset>
+          {this.renderError()}
           <div className={styles.buttonsContainer}>
             <button className={`${styles.cancel} ${styles.button}`} onClick={() => this.props.modalClose()}>Cancel</button>
             <button className={`${styles.create} ${styles.button}`}>Update</button>
@@ -86,6 +96,7 @@ EditListingForm.propTypes = {
   title: PropTypes.string,
   url: PropTypes.string,
   id: PropTypes.string,
+  showError: PropTypes.bool,
   handleEditSubmit: PropTypes.func,
   modalClose: PropTypes.func,
 

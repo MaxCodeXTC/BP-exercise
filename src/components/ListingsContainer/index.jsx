@@ -67,7 +67,7 @@ class ListingsContainer extends Component {
       targetListing.url = url;
 
       // set state to rerender component after edit
-      this.setState({ listings });
+      this.setState({ listings, showServerError: false });
       }).catch(() => {
         return this.setState({ showServerError: true });
       });
@@ -91,6 +91,7 @@ class ListingsContainer extends Component {
           loading={this.state.loading}
           onDeletePress={this.onDeletePress.bind(this)}
           handleEditSubmit={this.handleEditSubmit.bind(this)}
+          showError={this.state.showServerError}
         />
       </div>
     );

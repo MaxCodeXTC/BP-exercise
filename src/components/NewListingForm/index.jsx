@@ -21,9 +21,8 @@ class NewListingForm extends Component {
 
     return this.props.onSubmit(title, url).then(() => {
       return this.setState({ title: '', url: '', showError: false });
-    }).catch((error) => {
-      console.log(error);
-      return this.setState({ showError: true, error });
+    }).catch(() => {
+      return this.setState({ showError: true });
     });
   }
 
@@ -33,11 +32,23 @@ class NewListingForm extends Component {
     const name = target.name;
 
     this.setState({
-      [name]: value
+      [name]: value,
+      showError: false
     });
   }
 
+  renderError() {
+    if(!this.state.showError) {
+      return null;
+    }
+
+    return (
+      <p className={styles.error}>Please fill in all form fields*</p>
+    );
+  }
+
   render() {
+    console.log(this.state.showError);
     return(
       <div className={this.props.className}>
         <form className={styles.newListing} onSubmit={(event) => this.handleSubmit(event)}>
@@ -62,6 +73,7 @@ class NewListingForm extends Component {
             />
           </fieldset>
           <button className={`${styles.create} ${styles.button}`}>Enter</button>
+          {this.renderError()}
         </form>
       </div>
     );
