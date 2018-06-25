@@ -4,4 +4,9 @@
   color: $color-contrast;
   margin: 0 5px;
   font-size: $font-size-small;
+  cursor: pointer;
+  transition: all .3s;
+  &:hover {
+    transform: scale(1.3);
+  }
 }

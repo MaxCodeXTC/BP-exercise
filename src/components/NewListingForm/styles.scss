@@ -32,7 +32,15 @@
 }
 
 .create {
+  border: 2px solid $color-contrast;
+  width: 17%;
+  transition: all .3s;
   @include create;
+
+  &:hover {
+    background: transparent;
+    color: $color-contrast;
+  }
 }
 
 @media (max-width: $breakpoint-mobile) {
@@ -48,3 +56,5 @@
     width: 100%;
   }
 }
+
+
