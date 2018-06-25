@@ -43,6 +43,10 @@
   }
 }
 
+.error {
+  @include error;
+}
+
 @media (max-width: $breakpoint-mobile) {
   .newListing {
     fieldset {

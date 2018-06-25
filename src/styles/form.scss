@@ -55,6 +55,12 @@
   background-color: $color-cancel;
 }
 
+@mixin error {
+  color: $color-danger;
+  font-size: $font-size-secondary;
+  animation: slideup .3s;
+}
+
 @media (max-width: $breakpoint-mobile) {
   .newListing {
     fieldset {
@@ -66,5 +72,16 @@
 
   .create {
     width: 100%;
+  }
+}
+
+@keyframes slideup {
+  0% { 
+    transform: translateY(30%);
+    opacity: 0; 
+  }
+  100% { 
+    transform: translateY(0);
+    opacity: 1; 
   }
 }

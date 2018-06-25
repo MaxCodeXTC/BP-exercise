@@ -8,7 +8,7 @@ const ListingsList = (props) => {
 
   // render loading / no listings / current listings
   const renderListings = ()  => {
-    const { listings, loading, onDeletePress, handleEditSubmit } = props;
+    const { listings, loading, onDeletePress, handleEditSubmit, showError } = props;
 
     if(loading) {
       return <h2>Loading...</h2>;
@@ -26,6 +26,7 @@ const ListingsList = (props) => {
             listing={listing}
             onDeletePress={onDeletePress}
             handleEditSubmit={handleEditSubmit}
+            showError={showError}
           />
         );
       })
@@ -44,6 +45,7 @@ ListingsList.propTypes = {
   loading: PropTypes.bool,
   className: PropTypes.string,
   renderListings: PropTypes.func,
+  showError: PropTypes.bool,
   onDeletePress: PropTypes.func,
   handleEditSubmit: PropTypes.func,
 };
