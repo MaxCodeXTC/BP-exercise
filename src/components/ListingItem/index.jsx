@@ -52,7 +52,6 @@ class ListingItem extends Component {
           listing={this.state}
           handleEditSubmit={this.props.handleEditSubmit}
           modalClose={this.showEditModal.bind(this)}
-          showError={this.props.showError}
         />
       </Modal>
       </article>
@@ -65,7 +64,6 @@ ListingItem.propTypes = {
   title: PropTypes.string,
   url: PropTypes.string,
   id: PropTypes.string,
-  showError: PropTypes.bool,
   onDeletePress: PropTypes.func,
   handleEditSubmit: PropTypes.func,
 };

@@ -10,6 +10,7 @@ class EditListingForm extends Component {
       title: '',
       url: '',
       id: '',
+      showError: false
     };
   }
 
@@ -28,9 +29,11 @@ class EditListingForm extends Component {
     const { title, url, id } = this.state;
 
     this.props.handleEditSubmit(title, url, id).then(() => {
-      if(!this.props.showError) {
+      if(this.state.showError) {
         this.props.modalClose();
       }
+    }).catch(() => {
+      return this.setState({ showError: true });
     });
     
   }
@@ -46,7 +49,7 @@ class EditListingForm extends Component {
   }
 
   renderError() {
-    if(!this.props.showError) {
+    if(!this.state.showError) {
       return null;
     }
 
@@ -96,7 +99,6 @@ EditListingForm.propTypes = {
   title: PropTypes.string,
   url: PropTypes.string,
   id: PropTypes.string,
-  showError: PropTypes.bool,
   handleEditSubmit: PropTypes.func,
   modalClose: PropTypes.func,
 

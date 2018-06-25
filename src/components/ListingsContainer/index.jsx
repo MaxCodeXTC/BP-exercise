@@ -68,8 +68,7 @@ class ListingsContainer extends Component {
 
       // set state to rerender component after edit
       this.setState({ listings, showServerError: false });
-      }).catch(() => {
-        return this.setState({ showServerError: true });
+
       });
   }
 
