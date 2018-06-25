@@ -48,7 +48,6 @@ class NewListingForm extends Component {
   }
 
   render() {
-    console.log(this.state.showError);
     return(
       <div className={this.props.className}>
         <form className={styles.newListing} onSubmit={(event) => this.handleSubmit(event)}>

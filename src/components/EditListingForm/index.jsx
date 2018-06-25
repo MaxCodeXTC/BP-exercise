@@ -29,7 +29,7 @@ class EditListingForm extends Component {
     const { title, url, id } = this.state;
 
     this.props.handleEditSubmit(title, url, id).then(() => {
-      if(this.state.showError) {
+      if(!this.state.showError) {
         this.props.modalClose();
       }
     }).catch(() => {
@@ -45,6 +45,7 @@ class EditListingForm extends Component {
 
     this.setState({
       [name]: value,
+      showError: false
     });
   }
 
