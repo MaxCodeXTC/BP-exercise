@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
+import Spinner from '../common/Spinner';
 import ListingItem from '../ListingItem';
 
 const ListingsList = (props) => {
@@ -11,7 +12,8 @@ const ListingsList = (props) => {
     const { listings, loading, onDeletePress, handleEditSubmit } = props;
 
     if(loading) {
-      return <h2>Loading...</h2>;
+      // return <h2>Loading...</h2>;
+      return <Spinner />;
     } 
     
     else if(listings.length < 1 ) {
