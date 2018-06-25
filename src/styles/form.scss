@@ -36,22 +36,19 @@
   color: #FFF;
   display: inline-block;
   font-size: 1rem;
-  font-weight: $font-weight-light;
+  font-weight: $font-weight-normal;
   text-transform: uppercase;
   padding: $text-padding 0 $text-padding 0;
+  cursor: pointer;
 
   &:focus {
     outline: none;
   }
 
-  &:hover {
-    cursor: pointer;
-  }
 }
 
 @mixin create {
   background-color: $color-contrast;
-  width: 17%;
 }
 
 @mixin cancel {

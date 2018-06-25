@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
 const Modal = (props) => {
+
     if(!props.showModal) {
       return null;
     }
-    
     return (
       <div className={styles.modalBackDrop}>
         <div className={styles.modal}>
@@ -26,3 +26,11 @@ Modal.propTypes = {
 };
 
 export default Modal;
+
+    {/* <div className={styles.modalContainer}>
+      <div className={styles.modalBackground}>
+        <div className={styles.modal}>
+        {props.children}
+        </div>
+      </div>
+    </div> */}
