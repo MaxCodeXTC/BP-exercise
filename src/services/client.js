@@ -14,6 +14,7 @@ const API = axios.create({
 export default {
   getListings() {
     return API.get('/listings').then(response => {
+      console.log(response);
       return serializer(response.data);
     });
   },
