@@ -12,12 +12,13 @@ class ListingsContainer extends Component {
       listings: [],
       loading: true,
       showServerError: false,
+      showDeleteModal: false,
     };
   }
 
   componentDidMount() {
     return client.getListings().then(listings => {
-      return this.setState({ listings: listings, loading: false, showServerError: false });
+      return this.setState({ listings: listings, loading: false });
     }).catch(() => {
       return this.setState({ showServerError: true });
     });
@@ -31,8 +32,7 @@ class ListingsContainer extends Component {
       listings.push(listing);
 
       return this.setState({
-        listings: listings,
-        showServerError: false
+        listings: listings
       });
     });
   }
@@ -45,7 +45,7 @@ class ListingsContainer extends Component {
     // make API call for lisiting deletion
     client.deleteListing(id).then(() => {
       // rerender component with remaining listings after the filter
-      return this.setState({ listings: remainder });
+      return this.setState({ listings: remainder, showDeleteModal: false });
     }).catch(() => {
         this.setState({ showServerError: true });
     });
@@ -61,14 +61,13 @@ class ListingsContainer extends Component {
       let targetListing = listings.find((listing) => {
 				return listing.id === id;
       });
-
+      
       // change the found listing 
       targetListing.title = title;
       targetListing.url = url;
 
       // set state to rerender component after edit
-      this.setState({ listings, showServerError: false });
-
+      this.setState({ listings });
       });
   }
 
@@ -88,9 +87,11 @@ class ListingsContainer extends Component {
           className={styles.listings}
           listings={this.state.listings}
           loading={this.state.loading}
+          showServerError={this.state.showServerError}
           onDeletePress={this.onDeletePress.bind(this)}
           handleEditSubmit={this.handleEditSubmit.bind(this)}
           showError={this.state.showServerError}
+          showDeleteModal={this.state.showDeleteModal}
         />
       </div>
     );

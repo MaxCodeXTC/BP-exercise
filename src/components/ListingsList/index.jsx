@@ -7,17 +7,20 @@ import ListingItem from '../ListingItem';
 
 const ListingsList = (props) => {
 
-  // render loading / no listings / current listings
+  // render loading / no listings / error / current listings
   const renderListings = ()  => {
-    const { listings, loading, onDeletePress, handleEditSubmit } = props;
+    const { listings, loading, showError, onDeletePress, handleEditSubmit, showDeleteModal } = props;
 
     if(loading) {
-      // return <h2>Loading...</h2>;
       return <Spinner />;
     } 
     
     else if(listings.length < 1 ) {
       return <h2>No Listings Available</h2>;
+    }
+
+    else if(showError) {
+      return <h2>We are having trouble retrieving your listings at this time.</h2> ;
     }
 
     return (
@@ -28,6 +31,7 @@ const ListingsList = (props) => {
             listing={listing}
             onDeletePress={onDeletePress}
             handleEditSubmit={handleEditSubmit}
+            showDeleteModal={showDeleteModal}
           />
         );
       })
@@ -44,10 +48,12 @@ const ListingsList = (props) => {
 ListingsList.propTypes = {
   listings: PropTypes.array,
   loading: PropTypes.bool,
+  showError: PropTypes.bool,
   className: PropTypes.string,
   renderListings: PropTypes.func,
   onDeletePress: PropTypes.func,
   handleEditSubmit: PropTypes.func,
+  showDeleteModal: PropTypes.bool,
 };
 
 export default ListingsList;

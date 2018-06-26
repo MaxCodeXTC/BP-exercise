@@ -4,6 +4,7 @@ import styles from './styles.scss';
 
 import Icon from '../common/Icon';
 import Modal from '../common/Modal';
+
 import EditListingForm from '../EditListingForm';
 import DeleteListingDialogue from '../DeleteListingDialogue';
 
@@ -24,7 +25,7 @@ class ListingItem extends Component {
 
   // rerender components one the parent containers state changes
   componentWillReceiveProps(nextProps) {
-    this.setState({ listing: nextProps.listing });
+    this.setState({ listing: nextProps.listing, showDeleteModal: nextProps.showDeleteModal });
   }
 
   showEditModal() {
@@ -32,7 +33,6 @@ class ListingItem extends Component {
   }
 
   showDeleteModal() {
-    console.log('show meeee');
     return this.setState({ showDeleteModal: !this.state.showDeleteModal });
   }
 
@@ -47,25 +47,27 @@ class ListingItem extends Component {
           <a type="button" onClick={() => this.showDeleteModal()}><Icon iconClass="fa fa-trash" /></a>
         </div>
         <h2>{title}</h2> 
-        <h3>{url}</h3>
-      <Modal 
-        showModal={this.state.showEditModal}
-        modalClose={this.showEditModal.bind(this)}>
-        <EditListingForm 
-          listing={this.state.listing}
-          handleEditSubmit={this.props.handleEditSubmit}
-          modalClose={this.showEditModal.bind(this)}
-        />
-      </Modal>
-      <Modal
-        showModal={this.state.showDeleteModal}
-        modalClose={this.showDeleteModal.bind(this)}>
-        <DeleteListingDialogue
-          listing={this.state.listing} 
-          onDeletePress={this.props.onDeletePress}
-          modalClose={this.showDeleteModal.bind(this)}
-        />
-      </Modal>
+        <a href={url} target="_blank">{url}</a>
+
+        <Modal 
+          showModal={this.state.showEditModal}
+          modalClose={this.showEditModal.bind(this)}>
+          <EditListingForm 
+            listing={this.state.listing}
+            handleEditSubmit={this.props.handleEditSubmit}
+            modalClose={this.showEditModal.bind(this)}
+          />
+        </Modal>
+
+        <Modal
+          showModal={this.state.showDeleteModal}
+          modalClose={this.showDeleteModal.bind(this)}>
+          <DeleteListingDialogue
+            listing={this.state.listing} 
+            onDeletePress={this.props.onDeletePress}
+            modalClose={this.showDeleteModal.bind(this)}
+          />
+        </Modal>
 
       </article>
     );
@@ -79,6 +81,7 @@ ListingItem.propTypes = {
   id: PropTypes.string,
   onDeletePress: PropTypes.func,
   handleEditSubmit: PropTypes.func,
+  showDeleteModal: PropTypes.bool,
 };
 
 export default ListingItem;
