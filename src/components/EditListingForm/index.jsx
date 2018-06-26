@@ -12,6 +12,7 @@ class EditListingForm extends Component {
       id: '',
       showError: false
     };
+
   }
 
   componentDidMount() {
@@ -29,9 +30,13 @@ class EditListingForm extends Component {
     const { title, url, id } = this.state;
 
     this.props.handleEditSubmit(title, url, id).then(() => {
+
+      // alow modal to close if submit is successful
       if(!this.state.showError) {
         this.props.modalClose();
       }
+
+      // keep modal upoen and render error
     }).catch(() => {
       return this.setState({ showError: true });
     });
@@ -43,6 +48,7 @@ class EditListingForm extends Component {
     const value = target.value;
     const name = target.name;
 
+    // clear the error and allow submision once text starts to fill a field
     this.setState({
       [name]: value,
       showError: false
@@ -60,10 +66,11 @@ class EditListingForm extends Component {
   }
 
   render() {
+
     return(
       <div>
         <h2 className={styles.editFormTitle}>Edit Listing</h2>
-        <form className={styles.newListing} onSubmit={(event) => this.handleSubmit(event)}>
+        <form className={styles.editListing} onSubmit={(event) => this.handleSubmit(event)}>
           <fieldset>
             <input
               type="text"
@@ -85,10 +92,12 @@ class EditListingForm extends Component {
             />
           </fieldset>
           {this.renderError()}
+
           <div className={styles.buttonsContainer}>
             <button className={`${styles.cancel} ${styles.button}`} onClick={() => this.props.modalClose()}>Cancel</button>
             <button className={`${styles.confirm} ${styles.button}`}>Update</button>
           </div>
+
         </form>
       </div>
     );
@@ -96,14 +105,12 @@ class EditListingForm extends Component {
 }
 
 EditListingForm.propTypes = {
-  className: PropTypes.string,
   listing: PropTypes.object,
   title: PropTypes.string,
   url: PropTypes.string,
   id: PropTypes.string,
   handleEditSubmit: PropTypes.func,
   modalClose: PropTypes.func,
-
 };
 
 export default EditListingForm;

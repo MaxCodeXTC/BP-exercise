@@ -11,6 +11,7 @@ import DeleteListingDialogue from '../DeleteListingDialogue';
 class ListingItem extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       listing: {},
       showEditModal: false,
@@ -39,6 +40,7 @@ class ListingItem extends Component {
 
   render() {
     const { title, url } = this.state.listing;
+    const { showEditModal, showDeleteModal, listing } = this.state;
     
     return (
       <article className={styles.listingItem}>
@@ -50,17 +52,17 @@ class ListingItem extends Component {
         <a href={url} target="_blank">{url}</a>
 
         <Modal 
-          showModal={this.state.showEditModal}
+          showModal={showEditModal}
           modalClose={this.showEditModal.bind(this)}>
           <EditListingForm 
-            listing={this.state.listing}
+            listing={listing}
             handleEditSubmit={this.props.handleEditSubmit}
             modalClose={this.showEditModal.bind(this)}
           />
         </Modal>
 
         <Modal
-          showModal={this.state.showDeleteModal}
+          showModal={showDeleteModal}
           modalClose={this.showDeleteModal.bind(this)}>
           <DeleteListingDialogue
             listing={this.state.listing} 

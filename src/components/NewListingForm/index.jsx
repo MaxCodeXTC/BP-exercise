@@ -49,7 +49,7 @@ class NewListingForm extends Component {
 
   render() {
     return(
-      <div className={this.props.className}>
+      <div>
         <form className={styles.newListing} onSubmit={(event) => this.handleSubmit(event)}>
           <fieldset>
             <input
@@ -80,8 +80,7 @@ class NewListingForm extends Component {
 }
 
 NewListingForm.propTypes = {
-  className: PropTypes.string,
-  onSubmit: PropTypes.func
+  onSubmit: PropTypes.func,
 };
 
 export default NewListingForm;

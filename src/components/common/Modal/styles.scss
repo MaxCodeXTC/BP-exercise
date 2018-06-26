@@ -21,13 +21,13 @@
   min-height: 300px;
   margin: 0 auto;
   padding: 30px;
-  animation: slideInFromLeft .5s;
+  animation: slideInFromTop .5s;
   
 }
 
 // X on the top right that closes the modal
 .modalClose {
-  font-size: 1.5em;
+  font-size: 1.7em;
   font-weight: 600;
   color: $color-cancel;
   position: absolute;
@@ -39,9 +39,10 @@
   &:hover {
     transform: rotateZ(90deg);
   }
+
 }
 
-@keyframes slideInFromLeft {
+@keyframes slideInFromTop {
   0% {
     transform: translateY(-100%);
   }
