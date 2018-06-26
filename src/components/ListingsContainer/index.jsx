@@ -18,7 +18,7 @@ class ListingsContainer extends Component {
 
   componentDidMount() {
     return client.getListings().then(listings => {
-      return this.setState({ listings: listings, loading: false });
+      return this.setState({ listings, loading: false });
     }).catch(() => {
       return this.setState({ showServerError: true });
     });
@@ -31,9 +31,8 @@ class ListingsContainer extends Component {
     return client.createListing(title, url).then(listing => {
       listings.push(listing);
 
-      return this.setState({
-        listings: listings
-      });
+      // rerender the coopnent with the new listing added
+      return this.setState({ listings });
     });
   }
 
@@ -57,6 +56,8 @@ class ListingsContainer extends Component {
 
       // filter through the listings to find the one that matches the changed listing
       const { title, url, id } = response;
+
+      // spread the listings into an array to search for the target listing to edit
       let listings = [...this.state.listings];
       let targetListing = listings.find((listing) => {
 				return listing.id === id;
@@ -73,7 +74,9 @@ class ListingsContainer extends Component {
 
 
   render() {
-    
+
+    const { listings, loading, showServerError, showDeleteModal } = this.state;
+
     return(
       <div className={styles.container}>
       <Header title="Listings" />
@@ -85,13 +88,12 @@ class ListingsContainer extends Component {
         </main>
         <ListingsList
           className={styles.listings}
-          listings={this.state.listings}
-          loading={this.state.loading}
-          showServerError={this.state.showServerError}
+          listings={listings}
+          loading={loading}
+          showServerError={showServerError}
           onDeletePress={this.onDeletePress.bind(this)}
           handleEditSubmit={this.handleEditSubmit.bind(this)}
-          showError={this.state.showServerError}
-          showDeleteModal={this.state.showDeleteModal}
+          showDeleteModal={showDeleteModal}
         />
       </div>
     );

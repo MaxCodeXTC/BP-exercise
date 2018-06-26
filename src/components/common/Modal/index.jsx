@@ -18,7 +18,6 @@ const Modal = (props) => {
 };
 
 Modal.propTypes = {
-  onClose: PropTypes.func,
   showModal: PropTypes.bool,
   modalClose: PropTypes.func,
   children: PropTypes.node,

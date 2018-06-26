@@ -6,7 +6,7 @@
   font-size: $font-size-large;
 }
 
-.newListing {
+.editListing {
   @include listingForm;
 
   fieldset {
@@ -50,6 +50,7 @@
 }
 
 @media (max-width: $breakpoint-mobile) {
+  
   .newListing {
     fieldset {
       width: 100%;
@@ -66,4 +67,5 @@
   .buttonsContainer button.button.cancel {
     margin: 1em 0;
   }
+
 }

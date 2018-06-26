@@ -9,7 +9,7 @@ const ListingsList = (props) => {
 
   // render loading / no listings / error / current listings
   const renderListings = ()  => {
-    const { listings, loading, showError, onDeletePress, handleEditSubmit, showDeleteModal } = props;
+    const { listings, loading, showServerError, showDeleteModal, onDeletePress, handleEditSubmit } = props;
 
     if(loading) {
       return <Spinner />;
@@ -19,8 +19,8 @@ const ListingsList = (props) => {
       return <h2>No Listings Available</h2>;
     }
 
-    else if(showError) {
-      return <h2>We are having trouble retrieving your listings at this time.</h2> ;
+    else if(showServerError) {
+      return <h2>We are having trouble retrieving your listings at this time.</h2>;
     }
 
     return (
@@ -39,7 +39,7 @@ const ListingsList = (props) => {
   };
 
   return (
-    <section className={styles.listingsContainer}>
+    <section className={styles.listingsList}>
       {renderListings()}
     </section>
   );
@@ -48,7 +48,7 @@ const ListingsList = (props) => {
 ListingsList.propTypes = {
   listings: PropTypes.array,
   loading: PropTypes.bool,
-  showError: PropTypes.bool,
+  showServerError: PropTypes.bool,
   className: PropTypes.string,
   renderListings: PropTypes.func,
   onDeletePress: PropTypes.func,
