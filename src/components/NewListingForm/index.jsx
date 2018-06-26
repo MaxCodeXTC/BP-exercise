@@ -71,7 +71,7 @@ class NewListingForm extends Component {
               aria-required="true"
             />
           </fieldset>
-          <button className={`${styles.create} ${styles.button}`}>Enter</button>
+          <button className={`${styles.confirm} ${styles.button}`}>Enter</button>
           {this.renderError()}
         </form>
       </div>
