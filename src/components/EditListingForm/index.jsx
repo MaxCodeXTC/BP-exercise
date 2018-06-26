@@ -61,7 +61,8 @@ class EditListingForm extends Component {
 
   render() {
     return(
-      <div className={this.props.className}>
+      <div>
+        <h2 className={styles.editFormTitle}>Edit Listing</h2>
         <form className={styles.newListing} onSubmit={(event) => this.handleSubmit(event)}>
           <fieldset>
             <input
@@ -86,7 +87,7 @@ class EditListingForm extends Component {
           {this.renderError()}
           <div className={styles.buttonsContainer}>
             <button className={`${styles.cancel} ${styles.button}`} onClick={() => this.props.modalClose()}>Cancel</button>
-            <button className={`${styles.create} ${styles.button}`}>Update</button>
+            <button className={`${styles.confirm} ${styles.button}`}>Update</button>
           </div>
         </form>
       </div>

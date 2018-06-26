@@ -31,16 +31,9 @@
   @include button;
 }
 
-.create {
-  border: 2px solid $color-contrast;
+.confirm {
   width: 17%;
-  transition: all .3s;
-  @include create;
-
-  &:hover {
-    background: transparent;
-    color: $color-contrast;
-  }
+  @include confirm;
 }
 
 .error {
@@ -56,7 +49,7 @@
     }
   }
 
-  .create {
+  .confirm {
     width: 100%;
   }
 }

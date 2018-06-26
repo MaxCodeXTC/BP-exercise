@@ -1,0 +1,45 @@
+@import '../../styles/base.scss';
+@import '../../styles/form.scss';
+
+.deleteDialogueBody {
+  position: absolute;
+  top: 25%;
+  left: 0;
+  right: 0;
+  text-align: center;
+
+  h3 {
+    font-size: $font-size-primary;
+    margin-bottom: 2em;
+  }
+
+  .button {
+    @include button;
+    width: 20%;
+    margin: 0 1em;
+    padding: $padding-medium;
+  }
+
+  .cancel {
+    @include cancel;
+
+    &:hover {
+      color: $color-cancel;
+      background: transparent;
+    }
+  }
+
+  .confirm {
+    border: 2px solid $color-danger;
+    background: $color-danger;
+
+    &:hover {
+      color: $color-danger;
+      background: transparent;
+    }
+  }
+
+  .cancel, .confirm {
+    transition: all .3s;
+  }
+}

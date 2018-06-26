@@ -1,6 +1,11 @@
 @import '../../styles/base.scss';
 @import '../../styles/form.scss';
 
+
+.editFormTitle {
+  font-size: $font-size-large;
+}
+
 .newListing {
   @include listingForm;
 
@@ -32,8 +37,8 @@
   @include button;
 }
 
-.create {
-  @include create;
+.confirm {
+  @include confirm;
 }
 
 .cancel {
@@ -53,7 +58,7 @@
     }
   }
 
-  .create, 
+  .confirm, 
   .cancel {
     width: 100%;
   }

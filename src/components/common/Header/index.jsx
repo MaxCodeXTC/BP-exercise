@@ -4,8 +4,9 @@ import styles from './styles.scss';
 
 const Header = (props) => {
   return (
-  <header>
+  <header className={styles.header}>
     <h1 className={styles.title}>{props.title}</h1>
+    <div className={styles.underline}></div>
   </header>
   );
 };

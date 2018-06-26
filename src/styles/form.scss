@@ -40,19 +40,34 @@
   text-transform: uppercase;
   padding: $text-padding 0 $text-padding 0;
   cursor: pointer;
+  transition: all .3s;
 
   &:focus {
     outline: none;
   }
 
+  &:hover {
+    background: transparent;
+  }
+
 }
 
-@mixin create {
+@mixin confirm {
+  border: 2px solid $color-contrast;
   background-color: $color-contrast;
+
+  &:hover {
+    color: $color-contrast;
+  }
 }
 
 @mixin cancel {
+  border: 2px solid $color-cancel;
   background-color: $color-cancel;
+
+  &:hover {
+    color: $color-cancel;
+  }
 }
 
 @mixin error {
@@ -75,13 +90,4 @@
   }
 }
 
-@keyframes slideup {
-  0% { 
-    transform: translateY(30%);
-    opacity: 0; 
-  }
-  100% { 
-    transform: translateY(0);
-    opacity: 1; 
-  }
-}
+@include slideUp;

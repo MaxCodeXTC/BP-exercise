@@ -19,6 +19,7 @@ $font-weight-normal: 400;
 $font-size-primary: 1rem;
 $font-size-secondary: 0.875rem;
 $font-size-small: 0.75rem;
+$font-size-large: 1.5rem;
 
 $line-height-standard: 1.5rem;
 $line-height-large: 2rem;
@@ -53,4 +54,19 @@ html, body {
 
 * {
   box-sizing: border-box;
+}
+
+@mixin slideUp {
+
+  @keyframes slideup {
+    0% { 
+      transform: translateY(30%);
+      opacity: 0; 
+    }
+    100% { 
+      transform: translateY(0);
+      opacity: 1; 
+    }
+  }
+
 }
