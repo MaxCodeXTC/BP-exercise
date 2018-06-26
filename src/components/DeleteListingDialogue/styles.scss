@@ -1,0 +1,14 @@
+@import '../../styles/base.scss';
+@import '../../styles/form.scss';
+
+.button {
+  @include button;
+}
+
+.cancel {
+  @include cancel;
+}
+
+.confirm {
+  background: $color-danger
+}

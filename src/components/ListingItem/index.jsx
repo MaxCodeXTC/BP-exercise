@@ -5,55 +5,68 @@ import styles from './styles.scss';
 import Icon from '../common/Icon';
 import Modal from '../common/Modal';
 import EditListingForm from '../EditListingForm';
+import DeleteListingDialogue from '../DeleteListingDialogue';
 
 class ListingItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
-      url: '',
-      id: '',
-      showModal: false,
+      listing: {},
+      showEditModal: false,
+      showDeleteModal: false
     };
     
   }
 
   componentDidMount() {
-    const { title, url, id } = this.props.listing;
-    this.setState({ title, url, id });
+    this.setState({ listing: this.props.listing });
   }
 
   // rerender components one the parent containers state changes
   componentWillReceiveProps(nextProps) {
-    const { title, url, id } = nextProps.listing;
-    this.setState({ title, url, id });  
+    this.setState({ listing: nextProps.listing });
   }
 
   showEditModal() {
-    return this.setState({ showModal: !this.state.showModal });
+    return this.setState({ showEditModal: !this.state.showEditModal });
+  }
+
+  showDeleteModal() {
+    console.log('show meeee');
+    return this.setState({ showDeleteModal: !this.state.showDeleteModal });
   }
 
 
   render() {
-    const { title, url, id } = this.state;
+    const { title, url } = this.state.listing;
     
     return (
       <article className={styles.listingItem}>
         <div className={styles.iconContainer}>
-          <span onClick={() => this.showEditModal()}><Icon iconClass="fas fa-pen" /></span>
-          <span onClick={() => this.props.onDeletePress(id)}><Icon iconClass="fa fa-trash" /></span>
+          <a type="button" onClick={() => this.showEditModal()}><Icon iconClass="fas fa-pen" /></a>
+          <a type="button" onClick={() => this.showDeleteModal()}><Icon iconClass="fa fa-trash" /></a>
         </div>
         <h2>{title}</h2> 
         <h3>{url}</h3>
       <Modal 
-        showModal={this.state.showModal}
+        showModal={this.state.showEditModal}
         modalClose={this.showEditModal.bind(this)}>
         <EditListingForm 
-          listing={this.state}
+          listing={this.state.listing}
           handleEditSubmit={this.props.handleEditSubmit}
           modalClose={this.showEditModal.bind(this)}
         />
       </Modal>
+      <Modal
+        showModal={this.state.showDeleteModal}
+        modalClose={this.showDeleteModal.bind(this)}>
+        <DeleteListingDialogue
+          listing={this.state.listing} 
+          onDeletePress={this.props.onDeletePress}
+          modalClose={this.showDeleteModal.bind(this)}
+        />
+      </Modal>
+
       </article>
     );
   }

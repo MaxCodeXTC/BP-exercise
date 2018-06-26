@@ -20,17 +20,8 @@ const Modal = (props) => {
 Modal.propTypes = {
   onClose: PropTypes.func,
   showModal: PropTypes.bool,
-  showEditModal: PropTypes.func,
   modalClose: PropTypes.func,
   children: PropTypes.node,
 };
 
 export default Modal;
-
-    {/* <div className={styles.modalContainer}>
-      <div className={styles.modalBackground}>
-        <div className={styles.modal}>
-        {props.children}
-        </div>
-      </div>
-    </div> */}
