@@ -24,7 +24,7 @@ yarn start
 ## TODO
 Requirements:
 
-User should be able to add new listings
-User should be able to remove existing listings
-User should be able to edit an existing listing
-Form fields must respect server-side validation
+* User should be able to add new listings
+* User should be able to remove existing listings
+* User should be able to edit an existing listing
+* Form fields must respect server-side validation
