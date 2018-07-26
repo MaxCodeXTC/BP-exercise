@@ -1,5 +1,4 @@
-# BiggerPockets Technical Challenge
-Technical Activity given to assess technical skills for the position of UI Engineer at BiggerPockets.
+# React Listings App
 
 ## Dependencies
 This project is built using the following technologies:
@@ -23,20 +22,9 @@ yarn start
 ```
 
 ## TODO
-We would like you to build a system in which you can keep track of the properties that you’re interested in buying or renting. 
-This is essentially a bookmarking tool. Please consider the mockup provided [here](https://bp-assessment.s3.amazonaws.com/ui-engineer-design-mockup.png)
-
-As part of this challenge you will be expected to interface with a RESTFUL, JSON API which largely follows the JSON API spec (https://jsonapi.org).
-API documentation can be found here: http://clientside-api.herokuapp.com/apipie
-
-Your email will have included an API key that you will need to pass during all requests as a header. 
-This is documented for each endpoint.
-
 Requirements:
 
 User should be able to add new listings
 User should be able to remove existing listings
 User should be able to edit an existing listing
 Form fields must respect server-side validation
-
-There are intentional grey areas left open for interpretation.
